@@ -1,19 +1,21 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Iinclude
+CXXFLAGS = -std=c++14 -Wall -Wextra -Iinclude
+SRCDIR = src
+SOURCES = $(SRCDIR)/main.cc $(SRCDIR)/ZadKcpp.cc \
+          $(SRCDIR)/Zad1.cc $(SRCDIR)/Zad2.cc $(SRCDIR)/Zad3.cc \
+          $(SRCDIR)/Zad4.cc $(SRCDIR)/Zad5.cc $(SRCDIR)/Zad6.cc \
+          $(SRCDIR)/Zad7.cc $(SRCDIR)/Zad8.cc $(SRCDIR)/Zad9.cc \
+          $(SRCDIR)/Zad10.cc
 
-SRC = src/ZadKcpp.cc src/ZadAuto.cc
-OBJ = $(SRC:.cc=.o)
+OBJECTS = $(SOURCES:.cc=.o)
+TARGET = main
 
-all: main
+all: $(TARGET)
 
-main: main.o $(OBJ)
-	$(CXX) $(CXXFLAGS) -o main main.o $(OBJ) -lm
-
-main.o: main.cc
-	$(CXX) $(CXXFLAGS) -c main.cc
-
-src/%.o: src/%.cc
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
 
 clean:
-	rm -f *.o src/*.o main
+	rm -f $(OBJECTS) $(TARGET)
+
+.PHONY: all clean

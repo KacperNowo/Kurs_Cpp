@@ -3,8 +3,7 @@
 
 class ZadKcpp {
 public:
-    virtual void opis() = 0;
-    virtual void wykonaj() = 0;
+    virtual void run() = 0;
     virtual ~ZadKcpp() {}
 };
 
